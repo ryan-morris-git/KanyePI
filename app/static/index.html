@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>KanyePI - An API for Kanye Quotes</title>
+        <meta name="description" content="Spice up your webpage with some classic Kanye West quotes from this API.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <div class="row text-center">
+            <div class="col">
+                <h1 class="mx-4 display-1">KanyePI</h1>
+                <p class="lead mt-1">This API returns a classic quote from Kanye West.</p>
+                <blockquote class="blockquote">
+                    <p class="m-4"><em id="quote-example">If you're reading this, something has gone wrong with the API call.</em></p>
+                    <footer class="blockquote-footer">Kanye West</footer>
+                </blockquote>
+                <button class="btn btn-outline-dark m-4" onclick="getQuote();">Get a new quote</button>
+            </div>
+        </div>
+        <footer class="text-center" style="position: relative; bottom: 0;">
+            <hr>
+            <p>Made by <a href="https://ryan-morris.me/">Ryan Morris</a></p>
+            <a href="/docs">Documentation</a>
+        </footer>
+        <script>
+            let baseUrl = window.location.href;
+            let quoteElement = document.getElementById("quote-example");
+
+            function getQuote() {
+                fetch(`${baseUrl}api/quote`).then((response) => response.json()).then((json) => {
+                    quoteElement.innerHTML = json.quote;
+                });
+            }
+
+            getQuote();
+        </script>
+    </body>
+</html>
